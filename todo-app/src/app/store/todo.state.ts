@@ -1,5 +1,5 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {AddTodo, EmptyTodo} from './todo.actions';
+import {AddTodo, EmptyTodo, Add52} from './todo.actions';
 
 export interface TodoStateModel {
   todoList: string[];
@@ -20,6 +20,11 @@ export class TodoState {
 
   @Action(AddTodo)
   addTodo({patchState, getState}: StateContext<TodoStateModel>, {newTodo}: AddTodo): void {
+    patchState({todoList: [...getState().todoList, newTodo]});
+  }
+
+  @Action(Add52)
+  add52({patchState, getState}: StateContext<TodoStateModel>, {newTodo}: AddTodo): void {
     patchState({todoList: [...getState().todoList, newTodo]});
   }
 

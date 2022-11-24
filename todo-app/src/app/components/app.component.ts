@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Select, Store} from '@ngxs/store';
-import {AddTodo, EmptyTodo} from '../store/todo.actions';
+import {AddTodo, EmptyTodo, Add52} from '../store/todo.actions';
 import {TodoState} from '../store/todo.state';
 import {Observable} from 'rxjs';
 
@@ -14,6 +14,7 @@ export class AppComponent {
   @Select(TodoState.getTodoList) todoList$?: Observable<string[]>;
 
   newTodo = '';
+  newTodo52 = '52';
 
   constructor(private readonly store: Store) {}
 
@@ -26,5 +27,9 @@ export class AppComponent {
 
   onEmptyList(): void {
     this.store.dispatch(new EmptyTodo());
+  }
+
+  onAdd52(): void {
+    this.store.dispatch(new Add52(this.newTodo52));
   }
 }
